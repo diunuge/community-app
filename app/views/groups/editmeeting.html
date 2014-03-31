@@ -29,8 +29,10 @@
                 </tr>
 				<tr> <!-- mifosx-855 -->
                     <td width="20%">
-                        <label class="control-label">{{'label.input.strattime' | translate}}<span
+                        <label name="start_time" class="control-label">{{'label.input.strattime' | translate}}<span
                                 class="required">*</span></label>
+						<script type="text/javascript">
+						</script>
                     </td>
                     <td width="20%">
                         <input id="start_time" type="text"/>
@@ -40,11 +42,11 @@
                 </tr> <!-- mifosx-855 -->
 				<tr> <!-- mifosx-855 -->
                     <td width="20%">
-                        <label class="control-label">{{'label.input.endtime' | translate}}<span
+                        <label class="control-label">{{'label.input.duration' | translate}}<span
                                 class="required">*</span></label>
                     </td>
                     <td width="20%">
-                        <input id="end_time" type="text" />
+                        <input ng-model="formData.duration" type="text" />
                     </td>
                     <td width="20%"></td>
                     <td width="20%"></td>
@@ -55,7 +57,7 @@
                                 class="required">*</span></label>
                     </td>
                     <td width="20%">
-                        <input id="location" type="text" />
+                        <input ng-model="formData.location" type="text" />
                     </td>
                     <td width="20%"></td>
                     <td width="20%"></td>

@@ -21,7 +21,9 @@
                 scope.formData = {
                     repeating: scope.calendarData.repeating,
                     frequency: scope.calendarData.frequency.id,
-                    interval: scope.calendarData.interval
+                    interval: scope.calendarData.interval,
+					location: data.location,
+					duration: scope.calendarData.duration
                 }
                 //update interval option
                 for (var i in scope.repeatsEveryOptions) {
