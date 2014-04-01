@@ -15,7 +15,7 @@
     <form ng-submit="submit()">
         <div class="control-group">
             <table width="80%" class="form-horizontal">
-                <tr>
+                <tr> <!-- Meeting Start Date -->
                     <td width="20%">
                         <label class="control-label">{{'label.input.meetingstartdate' | translate}}<span
                                 class="required">*</span></label>
@@ -27,7 +27,7 @@
                     <td width="20%"></td>
                     <td width="20%"></td>
                 </tr>
-				<tr> <!-- mifosx-855 -->
+                <tr> <!-- Meeting Start Time (Format 'HHMM' ; ISO 8601)-->
                     <td width="20%">
                         <label name="start_time" class="control-label">{{'label.input.strattime' | translate}}<span
                                 class="required">*</span></label>
@@ -35,12 +35,12 @@
 						</script>
                     </td>
                     <td width="20%">
-                        <input id="start_time" type="text"/>
+                        <input ng-model="formData.startTime" type="text"/>
                     </td>
                     <td width="20%"></td>
                     <td width="20%"></td>
-                </tr> <!-- mifosx-855 -->
-				<tr> <!-- mifosx-855 -->
+                </tr>
+                <tr> <!-- Meeting Duration (in minutes) -->
                     <td width="20%">
                         <label class="control-label">{{'label.input.duration' | translate}}<span
                                 class="required">*</span></label>
@@ -50,8 +50,8 @@
                     </td>
                     <td width="20%"></td>
                     <td width="20%"></td>
-                </tr> <!-- mifosx-855 -->
-				<tr> <!-- mifosx-855 -->
+                </tr>
+                <tr> <!-- Meeting Location -->
                     <td width="20%">
                         <label class="control-label">{{'label.input.location' | translate}}<span
                                 class="required">*</span></label>
@@ -61,8 +61,8 @@
                     </td>
                     <td width="20%"></td>
                     <td width="20%"></td>
-                </tr> <!-- mifosx-855 -->
-                <tr>
+                </tr>
+                <tr> <!-- Meeting Repeating Occurrence -->
                     <td>
                         <label class="control-label">{{'label.input.repeat' | translate}}</label>
                     </td>
