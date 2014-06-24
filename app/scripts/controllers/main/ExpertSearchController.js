@@ -87,6 +87,9 @@
                     case 'create client':
                         location.path('/createclient');
                         break;
+					case 'import client':
+                        location.path('/importclient');
+                        break;
                     case 'clients':
                         location.path('/clients');
                         break;

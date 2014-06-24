@@ -173,6 +173,9 @@
             keyboardManager.bind('ctrl+shift+c', function () {
                 location.path('/createclient');
             });
+			keyboardManager.bind('ctrl+shift+c+i', function () {
+                location.path('/importclient');
+            });
             keyboardManager.bind('ctrl+shift+g', function () {
                 location.path('/creategroup');
             });
