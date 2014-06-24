@@ -1,0 +1,35 @@
+<div class="col-md-12">
+    <ul class="breadcrumb">
+        <li><a href="#/clients">{{'label.anchor.clients' | translate}}</a></li>
+        <li class="active">Import Clients</li>
+    </ul>
+	<form name="createclientform" novalidate="" class="form-horizontal well" ng-controller="ImportClientController"
+	      rc-submit="submit()">
+	    <api-validate></api-validate>
+	    <fieldset>
+	        <legend>Import Clients</legend>
+	        <div class="form-group">
+	            <label class="control-label col-sm-2">{{'label.input.office' | translate}}<span class="required">*</span></label>
+	
+	            <div class="col-sm-3">
+	                <select chosen="offices" id="officeId" ng-model="formData.officeId"  class="form-control"
+	                        ng-options="office.id as office.name for office in offices" value="{{office.id}}"
+	                        ng-change="changeOffice(formData.officeId)"></select>
+	            </div>
+	            <label class="control-label col-sm-2">{{'label.input.staff' | translate}}</label>
+	
+	            <div class="col-sm-3">
+	                <select chosen="staffs" id="staffId" ng-model="formData.staffId"  class="form-control"
+	                        ng-options="staff.id as staff.displayName for staff in staffs" value="{{staff.id}}">
+	                </select>
+	            </div>
+	        </div>
+	        <div class="col-md-offset-5">
+	            <a id="cancel" href="#/clients">
+	                <button type="reset" class="btn btn-default">{{'label.button.cancel' | translate}}</button>
+	            </a>
+	            <button id="save" type="submit" class="btn btn-primary" has-permission='CREATE_CLIENT'>{{'label.button.save' | translate}}</button>
+	        </div>
+	    </fieldset>
+	</form>
+</div>
