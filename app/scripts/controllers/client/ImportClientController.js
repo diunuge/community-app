@@ -1,35 +1,20 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
         ImportClientController: function (scope, resourceFactory, location, http, dateFilter, API_VERSION, $upload, $rootScope) {
-            scope.offices = [];
-            scope.staffs = [];
-            scope.savingproducts = [];
-            scope.first = {};
-            scope.first.date = new Date();
-            scope.formData = {};
-            scope.restrictDate = new Date();
-            scope.showSavingOptions = false;
-            scope.opensavingsproduct = false;
-            resourceFactory.clientTemplateResource.get({staffInSelectedOfficeOnly:true}, function (data) {
-                scope.offices = data.officeOptions;
-                scope.staffs = data.staffOptions;
-                scope.formData.officeId = scope.offices[0].id;
-                scope.savingproducts = data.savingProductOptions;
-                scope.genderOptions = data.genderOptions;
-                scope.clienttypeOptions = data.clientTypeOptions;
-                scope.clientClassificationOptions = data.clientClassificationOptions;
-                if (data.savingProductOptions.length > 0) {
-                    scope.showSavingOptions = true;
-                }
-            });
-
-            scope.changeOffice = function (officeId) {
-                resourceFactory.clientTemplateResource.get({staffInSelectedOfficeOnly:true, officeId: officeId
-                }, function (data) {
-                    scope.staffs = data.staffOptions;
-                    scope.savingproducts = data.savingProductOptions;
-                });
-            };
+			
+        	scope.clientTypeOptions = [ {
+				name : 'individual',
+				index : 0
+			}, {
+				name : 'corporate',
+				index : 1
+			} ];
+        	
+			scope.clientType = scope.clientTypeOptions[0];
+			scope.excelFile = {};
+			
+            scope.formDataGet = {};
+            scope.formDataPost = {};
 
             scope.setChoice = function () {
                 if (this.formData.active) {
@@ -39,32 +24,32 @@
                     scope.choice = 0;
                 }
             };
+            
+            scope.getClientTemplate = function () {
 
-            scope.submit = function () {
-                var reqDate = dateFilter(scope.first.date, scope.df);
-
-                this.formData.locale = scope.optlang.code;
-                this.formData.active = this.formData.active || false;
-                this.formData.dateFormat = scope.df;
-                this.formData.activationDate = reqDate;
-
-
-                if (scope.first.submitondate) {
-                    reqDate = dateFilter(scope.first.submitondate, scope.df);
-                    this.formData.submittedOnDate = reqDate;
-                }
-
-                if (scope.first.dateOfBirth) {
-                    this.formData.dateOfBirth = dateFilter(scope.first.dateOfBirth, scope.df);
-                }
-
-                if (!scope.opensavingsproduct) {
-                    this.formData.savingsProductId = null;
-                }
-
-                resourceFactory.clientResource.save(this.formData, function (data) {
-                    location.path('/viewclient/' + data.clientId);
+            	this.formDataGet.clientType = scope.clientType.index;
+            	//this.formData.Date = 234;
+            	//this.formData.StringT = "asdaf";
+            	
+            	resourceFactory.clientImportResource.getTemplate(this.formDataGet, function (data) {
+            		//location.path('/viewclient/' + 0);
                 });
+                /*resourceFactory.clientImportResource.getTemplate(this.formData, function (data) {
+                    
+                });*/
+            };
+            
+            scope.importClients = function () {
+
+            	this.formDataPost.clientType = scope.clientType.index;
+            	this.formDataPost.excelFile = scope.excelFile;
+            	
+            	resourceFactory.clientImportResource.importClients(this.formDataPost, function (data) {
+            		//location.path('/viewclient/' + 0);
+                });
+                /*resourceFactory.clientImportResource.getTemplate(this.formData, function (data) {
+                    
+                });*/
             };
         }
     });
