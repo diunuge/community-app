@@ -5,6 +5,8 @@
     </ul>
     <div name="ImportClient" ng-controller="ImportClientController">
     
+    	<!-- TODO -->
+    	<!-- Client input validation -->
 	    <form name="getTemplateForm" novalidate="" class="form-horizontal well" rc-submit="getClientTemplate()">
 		    <api-validate></api-validate>
 		    <fieldset>
@@ -13,17 +15,15 @@
 		        
 					<br>
 					
-		            <label class="control-label col-sm-2">Client Type<span class="required">*</span></label>
+		            <label class="control-label col-sm-3">Client Type<span class="required">*</span></label>
 		
-		            <div class="col-sm-3">
+		            <div class="col-sm-4">
 		                <select ng-model="clientType"  class="form-control" ngRequired 
 		                        ng-options="clientTypeOption.name for clientTypeOption in clientTypeOptions" value="clientType"></select>
 		            </div>
 		            
-		            clientType = {{clientType}} <br>
-		            {{clientType.index}}
 		        </div>
-		        <div class="col-md-offset-5">
+		        <div class="col-md-offset-3">
 		            <button id="btnGetTemplate" type="submit" class="btn btn-primary" has-permission='CREATE_CLIENT'>Get Template</button>
 		        </div>
 		    </fieldset>
@@ -37,20 +37,20 @@
 				
 					<br>
 					
-		            <label class="control-label col-sm-2">Client Type<span class="required">*</span></label>
+		            <label class="control-label col-sm-3">Select the Excel File<span class="required">*</span></label>
 		
-		            <div class="col-sm-3">
-		                <input ng-model="excelFile"  class="form-control" type="file" name="inputExcelFile"></input>
+		            <div class="col-sm-4">
+		                <input ng-model="excelFile"  ngRequired class="form-control" type="file" name="inputExcelFile"></input>
 		            </div>
 		            
 		        </div>
-		        <div class="col-md-offset-5">
+		        <div class="col-md-offset-3">
 		            <button id="btnGetTemplate" type="submit" class="btn btn-primary" has-permission='CREATE_CLIENT'>Submit Excel File</button>
 		        </div>
 		    </fieldset>
 		</form>
 
-		<div class="col-md-offset-5">
+		<div class="col-md-offset-3">
 			<a id="cancel" href="#/clients">
 				<button type="reset" class="btn btn-default">{{'label.button.cancel'| translate}}</button>
 			</a>
