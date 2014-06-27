@@ -11,7 +11,8 @@ define(['Q', 'underscore', 'mifosX'], function (Q) {
             'HttpServiceProvider',
             'AuthenticationService',
             'SessionManager',
-            'Paginator'
+            'Paginator',
+            'FileUploadService'
         ],
         controllers: [
             'main/MainController',
@@ -231,7 +232,8 @@ define(['Q', 'underscore', 'mifosX'], function (Q) {
             'HasPermissionDirective',
             'ActivitiesDisplayPanelDirective',
             'ScrollbarTopDirective',
-            'ChosenComboboxDirective'
+            'ChosenComboboxDirective',
+            'FileModelDirective'
         ]
     };
 
