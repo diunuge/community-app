@@ -44,7 +44,7 @@
                     }),
 					clientImportResource: defineResource(apiVer + "/clients/import/:clientType", {clientType: '@clientType'}, {
                         getTemplate: {method: 'GET', params: {}},
-                        importClients: {method: 'POST', params: {}}
+                        importClients: {method: 'POST', params: {}, transformRequest: angular.identity}
                     }),
                     clientIdentifierResource: defineResource(apiVer + "/client_identifiers/:clientIdentityId/documents", {clientIdentityId: '@clientIdentityId'}, {
                         get: {method: 'GET', params: {}, isArray: true}

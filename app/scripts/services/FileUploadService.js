@@ -7,7 +7,7 @@
                 
                 $http.post(uploadUrl, fd, {
                     transformRequest: angular.identity,
-                    headers: {'Content-Type': undefined, 
+                    headers: {'Content-Type': undefined, //let browser to set header multipart/form-data
                     	'Access-Control-Allow-Origin' : '*',
                     	'Access-Control-Allow-Methods' : ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']}
                 })
