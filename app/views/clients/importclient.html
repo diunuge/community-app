@@ -18,7 +18,7 @@
 		            <label class="control-label col-sm-3">Client Type<span class="required">*</span></label>
 		
 		            <div class="col-sm-4">
-		                <select ng-model="clientType"  class="form-control" ngRequired 
+		                <select ng-model="clientType"  class="form-control" required 
 		                        ng-options="clientTypeOption.name for clientTypeOption in clientTypeOptions" value="clientType"></select>
 		            </div>
 		            
@@ -40,7 +40,7 @@
 		            <label class="control-label col-sm-3">Select the Excel File<span class="required">*</span></label>
 		
 		            <div class="col-sm-4">
-		                <input file-model="excelFile"  ngRequired class="form-control" type="file" name="inputExcelFile"></input>
+		                <input class="form-control" type="file" name="inputExcelFile" ng-file-select="onFileSelect($files)" required ></input>
 		            </div>
 		            
 		        </div>

@@ -15,15 +15,6 @@
 			
             scope.formDataGet = {};
             scope.formDataPost = {};
-
-            scope.setChoice = function () {
-                if (this.formData.active) {
-                    scope.choice = 1;
-                }
-                else if (!this.formData.active) {
-                    scope.choice = 0;
-                }
-            };
             
             scope.getClientTemplate = function () {
 
@@ -39,7 +30,7 @@
                 });*/
             };
             
-            scope.serializeData = function ( data ) {
+            /*scope.serializeData = function ( data ) {
             	 
                 // If this is not an object, defer to native stringification.
                 if ( ! angular.isObject( data ) ) {
@@ -77,11 +68,15 @@
 
                 return( source );
 
+            };*/
+            
+            scope.onFileSelect = function ($files) {
+                scope.fileToUpload = $files[0];
             };
             
             scope.importClients = function () {
 
-            	this.formDataPost.clientType = scope.clientType.index;
+            	/*this.formDataPost.clientType = scope.clientType.index;
             	var clientType = scope.clientType.index;
             	//var file = scope.excelFile;
                 //console.log('file is ' + JSON.stringify(file));
@@ -102,7 +97,21 @@
                 //http.defaults.useXDomain = true;
                 resourceFactory.clientImportResource.importClients( fd, function (data) {
                     
-                });
+                });*/
+            	
+            	this.formDataPost.clientType = scope.clientType.index;
+            	
+            	$upload.upload({
+                    url: $rootScope.hostUrl + API_VERSION + '/clients/import',
+                    data: scope.formDataPost,
+                    file: scope.fileToUpload
+                }).then(function (data) {
+                        // to fix IE not refreshing the model
+                        //if (!scope.$$phase) {
+                        //    scope.$apply();
+                        //}
+                        //location.path('/viewclient/' + scope.clientId);
+                    });
             };
         }
     });
