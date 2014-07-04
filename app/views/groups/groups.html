@@ -6,6 +6,9 @@
         <a href="#/creategroup" class="btn btn-primary" has-permission='CREATE_GROUP'><i class="icon-plus icon-white"></i>{{'label.button.creategroup'
             | translate}}</a>
     </div>
+    <div class="pull-right">
+        <a href="#/importgroup" class="btn btn-primary" has-permission='CREATE_GROUP'><i class="icon-plus icon-white"></i>ImportGroup</a>
+    </div>
 </div>
 <div class="col-md-12" ng-controller="GroupController">
     <input ng-autofocus="true" ng-model="filterText" type="text" class="form-control"

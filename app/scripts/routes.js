@@ -421,6 +421,9 @@
             .when('/creategroup', {
                 templateUrl: 'views/groups/creategroup.html'
             })
+            .when('/importgroup', {
+                templateUrl: 'views/groups/importgroup.html'
+            })
             .when('/attachmeeting/:id/:entityType', {
                 templateUrl: 'views/groups/attachmeeting.html'
             })
