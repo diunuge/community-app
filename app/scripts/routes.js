@@ -79,6 +79,9 @@
             .when('/viewclient/:id', {
                 templateUrl: 'views/clients/viewclient.html'
             })
+            .when('/importclient', {
+                templateUrl: 'views/clients/importclient.html'
+            })
             .when('/clientscreenreport/:clientId', {
                 templateUrl: 'views/clients/clientscreenreport.html'
             })
@@ -129,6 +132,9 @@
             })
             .when('/editloanaccount/:id', {
                 templateUrl: 'views/loans/editloanaccount.html'
+            })
+            .when('/importloan', {
+                templateUrl: 'views/loans/importloan.html'
             })
             .when('/loanscreenreport/:loanId', {
                 templateUrl: 'views/loans/loanscreenreport.html'
@@ -435,6 +441,9 @@
             })
             .when('/savingaccount/:id/:action', {
                 templateUrl: 'views/savings/saving_account_actions.html'
+            })
+            .when('/importsaving', {
+                templateUrl: 'views/savings/importsaving.html'
             })
             .when('/savingaccountcharge/:id/:action/:chargeId', {
                 templateUrl: 'views/savings/saving_account_actions.html'

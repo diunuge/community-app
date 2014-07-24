@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        ImportGroupController: function (scope, resourceFactory, location, http, dateFilter, API_VERSION, $upload, $rootScope) {
+        ImportLoanController: function (scope, resourceFactory, location, http, dateFilter, API_VERSION, $upload, $rootScope) {
 			
 
 			scope.clientTypeOptions = [ {
@@ -19,11 +19,11 @@
 			scope.response = {};
 
 			scope.apiEndPoint = $rootScope.hostUrl + API_VERSION
-					+ '/groups/import';
+					+ '/loans/import';
 			scope.tenantIdentifier = '?tenantIdentifier='
 					+ $rootScope.tenantIdentifier;
 
-			scope.getGroupTemplate = function() {
+			scope.getLoanTemplate = function() {
 
 				$docURL = scope.apiEndPoint;
 				
@@ -39,7 +39,7 @@
 				    var blob = new Blob([data], {type: "application/vnd.ms-excel"});
 				    var objectUrl = URL.createObjectURL(blob);
 				    
-				    var fileName = "groups.xls";
+				    var fileName = "loan.xls";
 
 				    var downloadLink = document.createElement("a");
 				    downloadLink.href = objectUrl;
@@ -59,12 +59,12 @@
 				scope.fileToUpload = $files[0];
 			};
 
-			scope.importGroups = function() {
+			scope.importLoans = function() {
 
 				this.formData.clientType = scope.clientType.index;
 
 				$upload.upload({
-					url : $rootScope.hostUrl + API_VERSION + '/groups/import',
+					url : $rootScope.hostUrl + API_VERSION + '/loans/import',
 					data : scope.formData,
 					file : scope.fileToUpload
 				}).progress(function (evt) {
@@ -81,9 +81,9 @@
 				    
 				    if(headers('Success')){
 				    	var fileName = "Results.xls";
-				    	scope.response = "Groups are sucessfully imported!";
+				    	scope.response = "Loans are sucessfully imported!";
 				    }else{
-				    	scope.response = "Groups import is failed!";
+				    	scope.response = "Loans import is failed!";
 				    	var fileName = "Re-Upload.xls";
 				    }
 				    console.log(headers());
@@ -105,7 +105,7 @@
 			};
         }
     });
-    mifosX.ng.application.controller('ImportGroupController', ['$scope', 'ResourceFactory', '$location', '$http', 'dateFilter', 'API_VERSION', '$upload', '$rootScope', mifosX.controllers.ImportGroupController]).run(function ($log) {
-        $log.info("ImportGroupController initialized");
+    mifosX.ng.application.controller('ImportLoanController', ['$scope', 'ResourceFactory', '$location', '$http', 'dateFilter', 'API_VERSION', '$upload', '$rootScope', mifosX.controllers.ImportLoanController]).run(function ($log) {
+        $log.info("ImportLoanController initialized");
     });
 }(mifosX.controllers || {}));

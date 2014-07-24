@@ -1,0 +1,57 @@
+<div class="col-md-12">
+	<ul class="breadcrumb">
+		<li><a href="#/home">Home</a></li>
+		<li class="active">Import Savings</li>
+	</ul>
+	<div name="ImportClient" ng-controller="ImportSavingController">
+
+		<!-- TODO -->
+		<!-- Client input validation -->
+		<form name="getTemplateForm" novalidate="" class="form-horizontal well" rc-submit="getSavingTemplate()">
+		    <api-validate></api-validate>
+		    <fieldset>
+		        <legend>Get Template</legend>
+				
+				<h3>Enter your Savings Product configuration (Admin -> Organisation)!<h3>
+		        <div class="form-group">
+		            
+		        </div>
+		        <div class="col-md-offset-3">
+		            <button id="btnGetTemplate" type="submit" class="btn btn-primary" has-permission='CREATE_SAVINGSACCOUNTCHARGE'>Get Template</button>
+		        </div>
+		    </fieldset>
+		</form>
+
+		<form name="importSavingForm" novalidate=""
+			class="form-horizontal well" rc-submit="importSavings()">
+			<api-validate></api-validate>
+			<fieldset>
+				<legend>Import Savings</legend>
+				<div class="form-group">
+
+					<br> <label class="control-label col-sm-3">Select the
+						Excel File<span class="required">*</span>
+					</label>
+
+					<div class="col-sm-4">
+						<input class="form-control" type="file" name="inputExcelFile"
+							ng-file-select="onFileSelect($files)" required></input>
+					</div>
+
+				</div>
+				<div class="col-md-offset-3">
+					<button id="btnGetTemplate" type="submit" class="btn btn-primary"
+						has-permission='CREATE_SAVINGSACCOUNTCHARGE'>Submit Excel File</button>
+				</div>
+			</fieldset>
+		</form>
+
+		<div class="col-md-offset-3">
+			<a id="cancel" href="#/">
+				<button type="reset" class="btn btn-default">{{'label.button.cancel'|
+					translate}}</button>
+			</a>
+		</div>
+
+	</div>
+</div>
