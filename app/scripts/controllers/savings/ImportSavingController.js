@@ -19,7 +19,7 @@
 			scope.response = {};
 
 			scope.apiEndPoint = $rootScope.hostUrl + API_VERSION
-					+ '/savingsaccounts/import';
+					+ '/savingsproducts/import';
 			scope.tenantIdentifier = '?tenantIdentifier='
 					+ $rootScope.tenantIdentifier;
 
@@ -49,7 +49,6 @@
 				    downloadLink.click();
 				    document.body.removeChild(downloadLink);
 				    
-				    //window.open(objectUrl, '_blank');
 				}).error(function (data, status, headers, config) {
 				    //upload failed
 				});
@@ -64,43 +63,41 @@
 				this.formData.clientType = scope.clientType.index;
 
 				$upload.upload({
-					url : $rootScope.hostUrl + API_VERSION + '/savingsaccounts/import',
+					url : $rootScope.hostUrl + API_VERSION + '/savingsproducts/import',
 					data : scope.formData,
 					file : scope.fileToUpload
 				}).progress(function (evt) {
                     // get upload percentage
                     console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
                 }).success(function(data, status, headers, config) {
-					
-					//scope.getData.response = headers('Success');
-					
+										
 					var blob = new Blob([data], {type: "application/vnd.ms-excel"});
 				    var objectUrl = URL.createObjectURL(blob);
 				    
-				    //var fileName = "Results.xls";
-				    
 				    if(headers('Success')){
-				    	var fileName = "Results.xls";
+				    	//var fileName = "Results.xls";
 				    	scope.response = "Savings are sucessfully imported!";
+				    	location.path('/reports/savings');
+				    	
 				    }else{
 				    	scope.response = "Saving import is failed!";
 				    	var fileName = "Re-Upload.xls";
+				    	
+					    var downloadLink = document.createElement("a");
+					    downloadLink.href = objectUrl;
+					    downloadLink.download = fileName;
+
+					    document.body.appendChild(downloadLink);
+					    downloadLink.click();
+					    document.body.removeChild(downloadLink);
+					    
 				    }
 				    console.log(headers());
-
-				    var downloadLink = document.createElement("a");
-				    downloadLink.href = objectUrl;
-				    downloadLink.download = fileName;
-
-				    document.body.appendChild(downloadLink);
-				    downloadLink.click();
-				    document.body.removeChild(downloadLink);
 					
 					// to fix IE not refreshing the model
 					if (!scope.$$phase) {
 						scope.$apply();
 					}
-					//location.path('/viewclient/');
 				});
 			};
         }
