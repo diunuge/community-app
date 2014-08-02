@@ -172,6 +172,9 @@
             .when('/system', {
                 templateUrl: 'views/administration/system.html'
             })
+            .when('/import', {
+                templateUrl: 'views/administration/import.html'
+            })
             .when('/loanproducts', {
                 templateUrl: 'views/products/loanproducts.html'
             })
