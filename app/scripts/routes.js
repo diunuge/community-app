@@ -226,6 +226,9 @@
             .when('/createoffice', {
                 templateUrl: 'views/organization/createoffice.html'
             })
+            .when('/importoffice', {
+                templateUrl: 'views/organization/importoffice.html'
+            })
             .when('/viewoffice/:id', {
                 templateUrl: 'views/organization/viewoffice.html'
             })
@@ -348,6 +351,9 @@
             })
             .when('/addcode', {
                 templateUrl: 'views/system/addcode.html'
+            })
+            .when('/importcode', {
+                templateUrl: 'views/system/importcode.html'
             })
             .when('/jobs', {
                 templateUrl: 'views/system/schedulerjobs.html'
