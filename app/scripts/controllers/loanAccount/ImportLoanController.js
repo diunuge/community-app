@@ -20,12 +20,10 @@
 
 			scope.apiEndPoint = $rootScope.hostUrl + API_VERSION
 					+ '/loans/import';
-			scope.tenantIdentifier = '?tenantIdentifier='
-					+ $rootScope.tenantIdentifier;
 
 			scope.getLoanTemplate = function() {
 
-				$docURL = scope.apiEndPoint;
+				$docURL = $rootScope.hostUrl + API_VERSION + '/loans/import';
 				
 				http({
 				    url: $docURL,
@@ -49,7 +47,6 @@
 				    downloadLink.click();
 				    document.body.removeChild(downloadLink);
 				    
-				    //window.open(objectUrl, '_blank');
 				}).error(function (data, status, headers, config) {
 				    //upload failed
 				});
@@ -72,21 +69,52 @@
                     console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
                 }).success(function(data, status, headers, config) {
 					
-					//scope.getData.response = headers('Success');
-					
 					var blob = new Blob([data], {type: "application/vnd.ms-excel"});
 				    var objectUrl = URL.createObjectURL(blob);
 				    
-				    //var fileName = "Results.xls";
-				    
 				    if(headers('Success')){
-				    	var fileName = "Results.xls";
+				    	
 				    	scope.response = "Loans are sucessfully imported!";
+						location.path('/home');
+						
 				    }else{
 				    	scope.response = "Loans import is failed!";
 				    	var fileName = "Re-Upload.xls";
+						
+						var downloadLink = document.createElement("a");
+						downloadLink.href = objectUrl;
+						downloadLink.download = fileName;
+
+						document.body.appendChild(downloadLink);
+						downloadLink.click();
+						document.body.removeChild(downloadLink);
 				    }
 				    console.log(headers());
+
+					// to fix IE not refreshing the model
+					if (!scope.$$phase) {
+						scope.$apply();
+					}
+				});
+			};
+			
+			scope.getLoanRepaymentTemplate = function() {
+
+				$docURL = $rootScope.hostUrl + API_VERSION + '/loanrepayments/import';
+				
+				http({
+				    url: $docURL,
+				    method: "GET",
+				    data: {},
+				    headers:{
+				       'Content-type': 'application/json'
+				    },
+				    responseType: 'arraybuffer'
+				}).success(function (data, status, headers, config) {
+				    var blob = new Blob([data], {type: "application/vnd.ms-excel"});
+				    var objectUrl = URL.createObjectURL(blob);
+				    
+				    var fileName = "loanRepayments.xls";
 
 				    var downloadLink = document.createElement("a");
 				    downloadLink.href = objectUrl;
@@ -95,12 +123,53 @@
 				    document.body.appendChild(downloadLink);
 				    downloadLink.click();
 				    document.body.removeChild(downloadLink);
+				    
+				}).error(function (data, status, headers, config) {
+				    //upload failed
+				});
+			};
+
+			scope.importLoanRepayments = function() {
+
+				this.formData.clientType = scope.clientType.index;
+
+				$upload.upload({
+					url : $rootScope.hostUrl + API_VERSION + '/loanrepayments/import',
+					data : scope.formData,
+					file : scope.fileToUpload
+				}).progress(function (evt) {
+                    
+                    console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+                }).success(function(data, status, headers, config) {
+					
+					
+					var blob = new Blob([data], {type: "application/vnd.ms-excel"});
+				    var objectUrl = URL.createObjectURL(blob);
+				    
+				    if(headers('Success')){
+				    	
+				    	scope.response = "Loans Repayments are sucessfully imported!";
+						location.path('/home');
+						
+				    }else{
+				    	scope.response = "Loans Repayments import is failed!";
+				    	var fileName = "Re-Upload.xls";
+						
+						var downloadLink = document.createElement("a");
+						downloadLink.href = objectUrl;
+						downloadLink.download = fileName;
+
+						document.body.appendChild(downloadLink);
+						downloadLink.click();
+						document.body.removeChild(downloadLink);
+				    }
+				    console.log(headers());
 					
 					// to fix IE not refreshing the model
 					if (!scope.$$phase) {
 						scope.$apply();
 					}
-					//location.path('/viewclient/');
+					
 				});
 			};
         }

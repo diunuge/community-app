@@ -18,15 +18,18 @@
 			scope.getData = {};
 			scope.response = {};
 
-			scope.apiEndPoint = $rootScope.hostUrl + API_VERSION
-					+ '/clients/import/';
+			scope.apiEndPoint = [ $rootScope.hostUrl + API_VERSION + '/clients/import/', 
+				$rootScope.hostUrl + API_VERSION + '/clientsofgroup/import/' ];
 			scope.tenantIdentifier = '?tenantIdentifier='
 					+ $rootScope.tenantIdentifier;
 
 			scope.getClientTemplate = function() {
 
-				$docURL = scope.apiEndPoint + scope.clientType.index;
-				
+				if( scope.clientType == scope.clientTypeOptions[0] )
+					$docURL = scope.apiEndPoint[0];
+				else
+					$docURL = scope.apiEndPoint[1];
+					
 				http({
 				    url: $docURL,
 				    method: "GET",
@@ -39,8 +42,11 @@
 				    var blob = new Blob([data], {type: "application/vnd.ms-excel"});
 				    var objectUrl = URL.createObjectURL(blob);
 				    
-				    var fileName = "Client.xls";
-
+					if( scope.clientType == scope.clientTypeOptions[0] )
+						var fileName = "Client.xls";
+					else
+						var fileName = "Client-MemberOfGroup.xls";
+				    
 				    var downloadLink = document.createElement("a");
 				    downloadLink.href = objectUrl;
 				    downloadLink.download = fileName;
