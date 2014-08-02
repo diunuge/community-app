@@ -179,6 +179,7 @@ define(['Q', 'underscore', 'mifosX'], function (Q) {
             'centers/CenterController',
             'centers/ViewCenterController',
             'centers/CreateCenterController',
+            'centers/ImportCenterController',
             'centers/EditCenterController',
             'centers/CloseCenterController',
             'centers/AddGroupController',

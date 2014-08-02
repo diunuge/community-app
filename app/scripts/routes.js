@@ -541,6 +541,9 @@
             .when('/createcenter', {
                 templateUrl: 'views/centers/createcenter.html'
             })
+            .when('/importcenter', {
+                templateUrl: 'views/centers/importcenter.html'
+            })
             .when('/editcenter/:id', {
                 templateUrl: 'views/centers/editcenter.html'
             })
