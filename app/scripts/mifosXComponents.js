@@ -83,6 +83,7 @@ define(['Q', 'underscore', 'mifosX'], function (Q) {
             'organization/CreateOfficeController',
             'organization/ImportOfficeController',
             'organization/EditOfficeController',
+            'organization/ImportStaffController',
             'organization/CurrencyConfigController',
             'organization/CreateUserController',
             'organization/EditUserController',

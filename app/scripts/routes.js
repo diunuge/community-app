@@ -580,6 +580,9 @@
             .when('/assignstaff/:id/:entityType', {
                 templateUrl: 'views/groups/assignstaff.html'
             })
+            .when('/importstaff', {
+                templateUrl: 'views/organization/importstaff.html'
+            })
             .when('/global', {
                 templateUrl: 'views/administration/global.html'
             })

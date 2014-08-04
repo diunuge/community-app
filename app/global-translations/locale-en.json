@@ -2090,6 +2090,9 @@
     "label.chartofaccountimportdescription": "Import chart of accounts data",
     "label.codeimportdescription": "Import codes & code values data",
     "label.datatableimportdescription": "Import data tables",
+    "label.getexcelTemplate": "Get Excel Template",
+    "label.submitexcelfile": "Submit Excel File",
+    "label.selectexcelfile": "Select Excel File",
 
     "#Enumeration & Error Messages": "..",
     "No.Data.Found": "No data found.",
