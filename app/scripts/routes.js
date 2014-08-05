@@ -67,6 +67,9 @@
             .when('/admin/users', {
                 templateUrl: 'views/administration/users.html'
             })
+            .when('/importuser', {
+                templateUrl: 'views/administration/importuser.html'
+            })
             .when('/clients', {
                 templateUrl: 'views/clients/clients.html'
             })
