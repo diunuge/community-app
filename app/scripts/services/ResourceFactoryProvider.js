@@ -230,9 +230,6 @@
                         get: {method: 'GET', params: {}, isArray: true},
                         getView: {method: 'GET', params: {}}
                     }),
-                    periodicAccrualAccountingResource: defineResource(apiVer + "/accrualaccounting", {}, {
-                        run: {method: 'POST', params: {}}
-                    }),
                     codeResources: defineResource(apiVer + "/codes/:codeId", {codeId: "@codeId"}, {
                         getAllCodes: {method: 'GET', params: {}, isArray: true},
                         update: { method: 'PUT', params: {} }
@@ -307,9 +304,6 @@
                         cancel: { method: 'PUT', params: {command: 'delete'}}
                     }),
                     standingInstructionTemplateResource: defineResource(apiVer + "/standinginstructions/template", {}, {
-                        get: {method: 'GET', params: {}}
-                    }),
-                    standingInstructionHistoryResource: defineResource(apiVer + "/standinginstructionrunhistory", {}, {
                         get: {method: 'GET', params: {}}
                     }),
                     centerAccountResource: defineResource(apiVer + "/centers/:centerId/accounts", {centerId: '@centerId'}, {

@@ -1,4 +1,4 @@
-<div class="col-md-12" ng-controller="ViewFixedDepositProductController">
+<div class="row paddedleft" ng-controller="ViewFixedDepositProductController">
 <div id="viewlptop">
     <div class="paddedbottom10">
         <ul class="breadcrumb">
@@ -291,7 +291,8 @@
             <tr ng-repeat="incentiveData in chartSlab.incentives">
                 <td>{{incentiveData.attributeName.code | translate}}</td>
                 <td>{{incentiveData.conditionType.code | translate}} </td>
-                <td>{{incentiveData.attributeValueDesc}} </td>
+                <td data-ng-hide="incentiveData.attributeValueDesc">{{incentiveData.attributeValue}} </td>
+                <td data-ng-show="incentiveData.attributeValueDesc">{{incentiveData.attributeValueDesc}} </td>
                 <td>{{incentiveData.incentiveType.code | translate}} </td>
                 <td>{{incentiveData.amount}}</td>
             </tr>

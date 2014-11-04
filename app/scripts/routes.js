@@ -10,9 +10,6 @@
             .when('/home', {
                 templateUrl: 'views/home.html'
             })
-            .when('/richdashboard', {
-                templateUrl: 'views/private/rich_dashboard.html'
-            })
             .when('/products', {
                 templateUrl: 'views/products/products.html'
             })
@@ -33,10 +30,7 @@
             })
             .when('/listaccounttransactions/:instructionId', {
                 templateUrl: 'views/accounttransfers/list_transactions.html'
-            })
-            .when('/standinginstructions/history', {
-                templateUrl: 'views/accounttransfers/standinginstructions_history.html'
-            })
+            })          
             .when('/createtemplate', {
                 templateUrl: 'views/templates/createtemplate.html'
             })
@@ -73,6 +67,9 @@
             .when('/admin/users', {
                 templateUrl: 'views/administration/users.html'
             })
+            .when('/importuser', {
+                templateUrl: 'views/administration/importuser.html'
+            })
             .when('/clients', {
                 templateUrl: 'views/clients/clients.html'
             })
@@ -84,6 +81,9 @@
             })
             .when('/viewclient/:id', {
                 templateUrl: 'views/clients/viewclient.html'
+            })
+            .when('/importclient', {
+                templateUrl: 'views/clients/importclient.html'
             })
             .when('/clientscreenreport/:clientId', {
                 templateUrl: 'views/clients/clientscreenreport.html'
@@ -136,6 +136,9 @@
             .when('/editloanaccount/:id', {
                 templateUrl: 'views/loans/editloanaccount.html'
             })
+            .when('/importloan', {
+                templateUrl: 'views/loans/importloan.html'
+            })
             .when('/loanscreenreport/:loanId', {
                 templateUrl: 'views/loans/loanscreenreport.html'
             })
@@ -171,6 +174,9 @@
             })
             .when('/system', {
                 templateUrl: 'views/administration/system.html'
+            })
+            .when('/import', {
+                templateUrl: 'views/administration/import.html'
             })
             .when('/loanproducts', {
                 templateUrl: 'views/products/loanproducts.html'
@@ -225,6 +231,9 @@
             })
             .when('/createoffice', {
                 templateUrl: 'views/organization/createoffice.html'
+            })
+            .when('/importoffice', {
+                templateUrl: 'views/organization/importoffice.html'
             })
             .when('/viewoffice/:id', {
                 templateUrl: 'views/organization/viewoffice.html'
@@ -322,9 +331,6 @@
             .when('/editaccrule/:id', {
                 templateUrl: 'views/accounting/edit_acc_rule.html'
             })
-            .when('/run_periodic_accrual',{
-                templateUrl: 'views/accounting/periodic_accrual_accounting.html'
-            })
             .when('/viewcode/:id', {
                 templateUrl: 'views/system/viewcode.html'
             })
@@ -351,6 +357,9 @@
             })
             .when('/addcode', {
                 templateUrl: 'views/system/addcode.html'
+            })
+            .when('/importcode', {
+                templateUrl: 'views/system/importcode.html'
             })
             .when('/jobs', {
                 templateUrl: 'views/system/schedulerjobs.html'
@@ -430,6 +439,9 @@
             .when('/creategroup', {
                 templateUrl: 'views/groups/creategroup.html'
             })
+            .when('/importgroup', {
+                templateUrl: 'views/groups/importgroup.html'
+            })
             .when('/attachmeeting/:id/:entityType', {
                 templateUrl: 'views/groups/attachmeeting.html'
             })
@@ -441,6 +453,9 @@
             })
             .when('/savingaccount/:id/:action', {
                 templateUrl: 'views/savings/saving_account_actions.html'
+            })
+            .when('/importsaving', {
+                templateUrl: 'views/savings/importsaving.html'
             })
             .when('/savingaccountcharge/:id/:action/:chargeId', {
                 templateUrl: 'views/savings/saving_account_actions.html'
@@ -506,7 +521,7 @@
                 templateUrl: 'views/groups/editgroup.html'
             })
             .when('/addmember', {
-                templateUrl: 'views/clients/createclient.html'
+                templateUrl: 'views/groups/addmember.html'
             })
             .when('/groupattendance', {
                 templateUrl: 'views/groups/groupattendance.html'
@@ -538,6 +553,9 @@
             .when('/createcenter', {
                 templateUrl: 'views/centers/createcenter.html'
             })
+            .when('/importcenter', {
+                templateUrl: 'views/centers/importcenter.html'
+            })
             .when('/editcenter/:id', {
                 templateUrl: 'views/centers/editcenter.html'
             })
@@ -545,7 +563,7 @@
                 templateUrl: 'views/centers/closecenter.html'
             })
             .when('/addgroup', {
-                templateUrl: 'views/groups/creategroup.html'
+                templateUrl: 'views/centers/addgroup.html'
             })
             .when('/centerattendance', {
                 templateUrl: 'views/centers/centerattendance.html'
@@ -564,6 +582,9 @@
             })
             .when('/assignstaff/:id/:entityType', {
                 templateUrl: 'views/groups/assignstaff.html'
+            })
+            .when('/importstaff', {
+                templateUrl: 'views/organization/importstaff.html'
             })
             .when('/global', {
                 templateUrl: 'views/administration/global.html'

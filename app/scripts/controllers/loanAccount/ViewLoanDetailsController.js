@@ -7,29 +7,13 @@
             scope.formData = {};
             scope.date = {};
             scope.date.payDate = new Date();
-            scope.hideAccrualTransactions = false;
-            scope.isHideAccrualsCheckboxChecked = true;
-            scope.updateCheckBoxStatus = function (){
-                scope.isHideAccrualsCheckboxChecked = !scope.isHideAccrualsCheckboxChecked;
-            };
+            scope.hideAccrualTransactions = '';
             scope.routeTo = function (loanId, transactionId, transactionTypeId) {
                 if (transactionTypeId == 2 || transactionTypeId == 4) {
                     location.path('/viewloantrxn/' + loanId + '/trxnId/' + transactionId);
                 }
                 ;
             };
-
-            /***
-             * we are using orderBy(https://docs.angularjs.org/api/ng/filter/orderBy) filter to sort fields in ui
-             * api returns dates in array format[yyyy, mm, dd], converting the array of dates to date object
-             * @param dateFieldName
-             */
-            scope.convertDateArrayToObject = function(dateFieldName){
-                for(var i in scope.loandetails.transactions){
-                    scope.loandetails.transactions[i][dateFieldName] = new Date(scope.loandetails.transactions[i].date);
-                }
-            };
-
             scope.clickEvent = function (eventName, accountId) {
                 eventName = eventName || "";
                 switch (eventName) {

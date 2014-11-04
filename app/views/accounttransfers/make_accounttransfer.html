@@ -12,7 +12,7 @@
             <legend>{{ 'label.heading.accounttransfers' | translate }}</legend>
             <div class="row paddedleft">
                 <label><strong>{{ 'label.heading.transferringfrom' | translate}}</strong></label>
-                <table class="table table-striped">
+                <table class="width100">
                     <tr>
                         <td class="width20">{{'label.heading.applicant' | translate}}</td>
                         <td class="width30">{{transfer.fromClient.displayName}}</td>
@@ -27,7 +27,7 @@
                     </tr>
                     <tr>
                         <td>{{'label.heading.currency' | translate}}</td>
-                        <td colspan="3">{{transfer.currency.name}}</td>
+                        <td>{{transfer.currency.name}}</td>
                     </tr>
                 </table>
             </div>
@@ -93,7 +93,7 @@
                         class="required">*</span></label>
 
                 <div class="col-sm-3">
-                    <input type="text" id="transferAmount" number-format name="transferAmount" ng-model="formData.transferAmount" class="form-control"
+                    <input type="text" id="transferAmount" name="transferAmount" ng-model="formData.transferAmount" class="form-control"
                            required late-validate/>
                 </div>
                 <div class="col-sm-3">

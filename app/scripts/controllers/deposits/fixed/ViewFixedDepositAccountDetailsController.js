@@ -5,17 +5,6 @@
                 return savingsTransactionType.withdrawal == true || savingsTransactionType.feeDeduction == true;
             };
 
-            /***
-             * we are using orderBy(https://docs.angularjs.org/api/ng/filter/orderBy) filter to sort fields in ui
-             * api returns dates in array format[yyyy, mm, dd], converting the array of dates to date object
-             * @param dateFieldName
-             */
-            scope.convertDateArrayToObject = function(dateFieldName){
-                for(var i in scope.savingaccountdetails.transactions){
-                    scope.savingaccountdetails.transactions[i][dateFieldName] = new Date(scope.savingaccountdetails.transactions[i].date);
-                }
-            };
-
             scope.clickEvent = function (eventName, accountId) {
                 eventName = eventName || "";
                 switch (eventName) {
@@ -258,11 +247,6 @@
 
             var IncentiveCtrl = function ($scope, $modalInstance, chartSlab) {
                 $scope.chartSlab = chartSlab;
-                _.each($scope.chartSlab.incentives, function (incentive) {
-                    if(!incentive.attributeValueDesc){
-                        incentive.attributeValueDesc = incentive.attributeValue;
-                    }
-                });
                 $scope.cancel = function () {
                     $modalInstance.dismiss('cancel');
                 };

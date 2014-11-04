@@ -30,11 +30,6 @@
 
         var IncentiveCtrl = function ($scope, $modalInstance, chartSlab) {
             $scope.chartSlab = chartSlab;
-            _.each($scope.chartSlab.incentives, function (incentive) {
-                if(!incentive.attributeValueDesc){
-                    incentive.attributeValueDesc = incentive.attributeValue;
-                }
-            });
             $scope.cancel = function () {
                 $modalInstance.dismiss('cancel');
             };

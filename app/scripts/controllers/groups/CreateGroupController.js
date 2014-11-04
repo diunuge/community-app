@@ -1,6 +1,6 @@
 (function (module) {
     mifosX.controllers = _.extend(module, {
-        CreateGroupController: function (scope, resourceFactory, location, dateFilter, routeParams) {
+        CreateGroupController: function (scope, resourceFactory, location, dateFilter) {
             scope.offices = [];
             scope.staffs = [];
             scope.data = {};
@@ -13,39 +13,40 @@
             scope.added = [];
             scope.formData = {};
             scope.formData.clientMembers = [];
-            var requestParams = {orderBy: 'name', sortOrder: 'ASC', staffInSelectedOfficeOnly: true};
-            if (routeParams.centerId) {
-                requestParams.centerId = routeParams.centerId;
-            }
-            resourceFactory.groupTemplateResource.get(requestParams, function (data) {
+            resourceFactory.groupTemplateResource.get({orderBy: 'name', sortOrder: 'ASC',staffInSelectedOfficeOnly:true}, function (data) {
                 scope.offices = data.officeOptions;
                 scope.staffs = data.staffOptions;
                 scope.clients = data.clientOptions;
             });
-            
-            scope.viewClient = function (item) {
-                scope.client = item;
-            };
-            
             scope.add = function () {
-            	if(scope.available != ""){
-            		var temp = {};
-                    temp.id = scope.available.id;
-                    temp.displayName = scope.available.displayName;
-                	scope.addedClients.push(temp);
-            	}
+                for (var i in this.available) {
+                    for (var j in scope.clients) {
+                        if (scope.clients[j].id == this.available[i]) {
+                            var temp = {};
+                            temp.id = this.available[i];
+                            temp.displayName = scope.clients[j].displayName;
+                            scope.addedClients.push(temp);
+                            scope.clients.splice(j, 1);
+                        }
+                    }
+                }
+
             };
-            scope.sub = function (id) {
-            	for (var i = 0; i < scope.addedClients.length; i++) {
-                    if (scope.addedClients[i].id == id) {
-                        scope.addedClients.splice(i, 1);
-                        break;
+            scope.sub = function () {
+                for (var i in this.added) {
+                    for (var j in scope.addedClients) {
+                        if (scope.addedClients[j].id == this.added[i]) {
+                            var temp = {};
+                            temp.id = this.added[i];
+                            temp.displayName = scope.addedClients[j].displayName;
+                            scope.clients.push(temp);
+                            scope.addedClients.splice(j, 1);
+                        }
                     }
                 }
             };
             scope.changeOffice = function (officeId) {
                 scope.addedClients = [];
-                scope.available = [];
                 resourceFactory.groupTemplateResource.get({staffInSelectedOfficeOnly: false, officeId: officeId,staffInSelectedOfficeOnly:true
                 }, function (data) {
                     scope.staffs = data.staffOptions;
@@ -62,14 +63,6 @@
                     scope.choice = 0;
                 }
             };
-            
-            if(routeParams.centerId) {
-            	scope.cancel = '#/viewcenter/' + routeParams.centerId
-            	scope.centerid = routeParams.centerId;
-        	}else {
-        		scope.cancel = "#/groups"
-        	}
-            
             scope.submit = function () {
                 for (var i in scope.addedClients) {
                     scope.formData.clientMembers[i] = scope.addedClients[i].id;
@@ -78,16 +71,11 @@
                     var reqDate = dateFilter(scope.first.date, scope.df);
                     this.formData.activationDate = reqDate;
                 }
-                if (routeParams.centerId) {
-                    this.formData.centerId = routeParams.centerId;
-                }
-                if (routeParams.officeId) {
-                    this.formData.officeId = routeParams.officeId;
-                }
                 if (scope.first.submitondate) {
                     reqDat = dateFilter(scope.first.submitondate, scope.df);
                     this.formData.submittedOnDate = reqDat;
                 }
+
                 this.formData.locale = scope.optlang.code;
                 this.formData.dateFormat = scope.df;
                 this.formData.active = this.formData.active || false;
@@ -97,7 +85,7 @@
             };
         }
     });
-    mifosX.ng.application.controller('CreateGroupController', ['$scope', 'ResourceFactory', '$location', 'dateFilter', '$routeParams', mifosX.controllers.CreateGroupController]).run(function ($log) {
+    mifosX.ng.application.controller('CreateGroupController', ['$scope', 'ResourceFactory', '$location', 'dateFilter', mifosX.controllers.CreateGroupController]).run(function ($log) {
         $log.info("CreateGroupController initialized");
     });
 }(mifosX.controllers || {}));

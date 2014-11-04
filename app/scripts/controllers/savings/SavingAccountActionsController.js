@@ -9,7 +9,6 @@
             scope.restrictDate = new Date();
             // Transaction UI Related
             scope.isTransaction = false;
-            scope.transactionAmountField = false;
             scope.showPaymentDetails = false;
             scope.paymentTypes = [];
 
@@ -53,7 +52,7 @@
                     scope.taskPermissionName = 'ACTIVATE_SAVINGSACCOUNT';
                     break;
                 case "deposit":
-                    resourceFactory.savingsTrxnsTemplateResource.get({savingsId: scope.accountId}, function (data) {
+                    resourceFactory.savingsTrxnsTemplateResource.get({savingsId: scope.accountId, command: 'deposit'}, function (data) {
                         scope.paymentTypes = data.paymentTypeOptions;
                     });
                     scope.title = 'label.heading.depositmoneytosavingaccount';
@@ -62,12 +61,11 @@
                     scope.showDateField = true;
                     scope.showNoteField = false;
                     scope.isTransaction = true;
-                    scope.transactionAmountField = true;
                     scope.showPaymentDetails = false;
                     scope.taskPermissionName = 'DEPOSIT_SAVINGSACCOUNT';
                     break;
                 case "withdrawal":
-                    resourceFactory.savingsTrxnsTemplateResource.get({savingsId: scope.accountId}, function (data) {
+                    resourceFactory.savingsTrxnsTemplateResource.get({savingsId: scope.accountId, command: 'withdrawal'}, function (data) {
                         scope.paymentTypes = data.paymentTypeOptions;
                     });
                     scope.title = 'label.heading.withdrawmoneyfromsavingaccount';
@@ -76,7 +74,6 @@
                     scope.showDateField = true;
                     scope.showNoteField = false;
                     scope.isTransaction = true;
-                    scope.transactionAmountField = true;
                     scope.showPaymentDetails = false;
                     scope.taskPermissionName = 'WITHDRAWAL_SAVINGSACCOUNT';
                     break;
@@ -99,18 +96,11 @@
                     scope.taskPermissionName = 'APPLYANNUALFEE_SAVINGSACCOUNT';
                     break;
                 case "close":
-                    resourceFactory.savingsTrxnsTemplateResource.get({savingsId: scope.accountId}, function (data) {
-                        scope.paymentTypes = data.paymentTypeOptions;
-                    });
-                    resourceFactory.savingsResource.get({accountId: routeParams.id, fields:'summary'}, function (accountData) {
-                        scope.accountBalance = accountData.summary.accountBalance;
-                    });
                     scope.title = 'label.heading.closesavingaccount';
                     scope.labelName = 'label.input.closedon';
                     scope.modelName = 'closedOnDate';
                     scope.showDateField = true;
                     scope.showNoteField = true;
-                    scope.withdrawBalance = true;
                     scope.taskPermissionName = 'CLOSE_SAVINGSACCOUNT';
                     break;
                 case "modifytransaction":
@@ -136,7 +126,6 @@
                     scope.showDateField = true;
                     scope.showNoteField = false;
                     scope.isTransaction = true;
-                    scope.transactionAmountField = true;
                     scope.showPaymentDetails = false;
                     scope.taskPermissionName = 'ADJUSTTRANSACTION_SAVINGSACCOUNT';
                     break;
@@ -182,10 +171,6 @@
                     scope.paymentDatefield = true;
                     scope.modelName = 'dueDate';
                     scope.taskPermissionName = 'PAY_SAVINGSACCOUNTCHARGE';
-                    break;
-                case "inactivate":
-                    scope.inactivateCharge = true;
-                    scope.taskPermissionName = 'INACTIVATE_SAVINGSACCOUNTCHARGE';
                     break;
                 case "waive":
                     scope.waiveCharge = true;
@@ -240,12 +225,10 @@
                         function (data) {
                             location.path('/viewsavingaccount/' + data.savingsId);
                         });
-                } else if (scope.action == "paycharge" || scope.action == "waive" || scope.action == "inactivate") {
+                } else if (scope.action == "paycharge" || scope.action == "waive") {
                     params = {accountId: routeParams.id, resourceType: 'charges', chargeId: routeParams.chargeId, command: scope.action};
                     if (this.formData.dueDate) {
                         this.formData.dueDate = dateFilter(this.formData.dueDate, scope.df);
-                    } else if(this.formData.inactivationOnDate){
-                        this.formData.inactivationOnDate = dateFilter(this.formData.inactivationOnDate, scope.df);
                     }
                     resourceFactory.savingsResource.save(params, this.formData, function (data) {
                         location.path('/viewsavingaccount/' + data.savingsId);

@@ -250,13 +250,3 @@ select[multiple]{
 .center td{
 	text-align: center;
 }
-.panel {
-	border-radius: 0px;	
-}
-.panel-heading{
-	border-radius: 0px;
-	padding: 6px 10px;
-}
-.alert {
-	border-radius: 0px;	
-}

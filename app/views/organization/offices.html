@@ -13,11 +13,11 @@
                 class="icon-sitemap icon-white"></i>{{'label.button.treeview' | translate}}</a>
         <a href="#/createoffice" class="btn btn-primary" has-permission='CREATE_OFFICE'><i class="icon-plus icon-white"></i>{{'label.button.createoffice'
             | translate}}</a>
+		<a href="#/importoffice" class="btn btn-primary" has-permission='CREATE_OFFICE'><i class="icon-plus icon-white"></i>Import Office</a>
     </div>
-    <div class="clear"></div>
-    <div ng-hide="isTreeView">
-    	<input ng-autofocus="true" ng-model="filterText" type="text" class="form-control span marginbottom0px"
+    <input ng-autofocus="true" ng-model="filterText" type="text" class="form-control span marginbottom0px"
            placeholder="{{'label.input.filterbynameexternalid' | translate}}">
+    <div ng-hide="isTreeView">
         <table class="table">
             <thead>
             <tr class="graybg">
